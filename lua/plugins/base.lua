@@ -1,6 +1,6 @@
 -- since this is just an example spec, don't actually load anything here and return an empty spec
 -- stylua: ignore
-if true then return {} end
+--if true then return {} end
 
 -- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
 --
@@ -9,6 +9,33 @@ if true then return {} end
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
 return {
+
+
+    { "MunifTanjim/nui.nvim" },
+    { "EdenEast/nightfox.nvim" }, 
+    { "CRAG666/code_runner.nvim", config = true },
+    { "xeluxee/competitest.nvim", 
+    dependencies = 'MunifTanjim/nui.nvim',
+    config = function() require('competitest').setup() end},
+
+    {
+        "kawre/leetcode.nvim",
+        build = ":TSUpdate html",
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+            "nvim-lua/plenary.nvim", -- required by telescope
+            "MunifTanjim/nui.nvim",
+
+            -- optional
+            "nvim-treesitter/nvim-treesitter",
+            "rcarriga/nvim-notify",
+            "nvim-tree/nvim-web-devicons",
+            },
+        opts = {
+            -- configuration goes here
+             },
+    },
+
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
 
@@ -16,7 +43,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox",
+      colorscheme = "gruvbox", -- "gruvbox", darkblue, nightfox, desert, industry
     },
   },
 
